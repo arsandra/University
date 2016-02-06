@@ -117,6 +117,21 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
+# https://docs.djangoproject.com/en/1.9/howto/sta
+MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (MEDIA_ROOT,)
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+RECOVER_ONLY_ACTIVE_USERS = False
+ACCOUNT_ACTIVATION_DAYS = 2
+ANONYMOUS_USER_ID = -1
+AUTH_USER_MODEL = "registers.User"
+
+SITE_ID = 1
+

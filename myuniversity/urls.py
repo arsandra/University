@@ -16,9 +16,23 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from registers.views import Home
-
+from registers import urls as reg_urls
+from myuniversity.views import anonymous_required
+from registers.views import *
+from django.contrib.auth import views as auth_views
+import registers.views as views
 
 urlpatterns = [
     url(r'^$', Home.as_view(),name='home'),
+    url(r'^register/', include(reg_urls)),
     url(r'^admin/', include(admin.site.urls)),
-]
+    url(r'^user/login/$',
+        anonymous_required(auth_views.login),
+        {'template_name': 'login.html'},
+        name='login'),
+
+    url(r'^user/logout/$',
+        auth_views.logout,
+        {'template_name': 'logout.html'},
+        name='logout'),
+    ]
